@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: ./docker-entrypoint.sh
+    ports:
+      - "12111:12111"
