@@ -24,18 +24,18 @@ jobs:
           name: Build Docker container
           command: docker-compose build
       - run:
-        name: Run Docker container and make sure it's working
-        command: |
-          set -x
-          docker-compose up -d
-          docker ps
-          docker run --network container:stripemock_web_1 \
-            appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused -i http://localhost:12111/v1/charges -H "Authorization: Bearer sk_test_123"
+          name: Run Docker container and make sure it's working
+          command: |
+            set -x
+            docker-compose up -d
+            docker ps
+            docker run --network container:stripemock_web_1 \
+              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused -i http://localhost:12111/v1/charges -H "Authorization: Bearer sk_test_123"
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-        filters:
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
       - run: docker push brad811/stripe-mock:$CIRCLE_BRANCH
-        filters:
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
