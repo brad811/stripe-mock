@@ -33,12 +33,12 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build Docker container
-          command: sudo docker-compose build
+          command: docker-compose build
       - run:
           name: Run Docker container and make sure it's working
           command: |
             set -x
-            sudo docker-compose up -d
-            sudo docker ps
-            sudo docker run --network container:stripemock_web_1 \
+            docker-compose up -d
+            docker ps
+            docker run --network container:stripemock_web_1 \
               appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused -i http://localhost:12111/v1/charges -H "Authorization: Bearer sk_test_123"
