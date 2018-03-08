@@ -38,5 +38,6 @@ jobs:
     branches:
       only:
         - master
-    - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-    - run: docker push brad811/stripe-mock:$CIRCLE_BRANCH
+    steps:
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker push brad811/stripe-mock:$CIRCLE_BRANCH
