@@ -3,6 +3,7 @@ version: '3'
 services:
   web:
     build: .
+    image: brad811/stripe-mock:$CIRCLE_BRANCH
     command: ./docker-entrypoint.sh
     ports:
       - "12111:12111"
