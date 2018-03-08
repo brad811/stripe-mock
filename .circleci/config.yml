@@ -33,13 +33,19 @@ jobs:
               appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused -i http://localhost:12111/v1/charges -H "Authorization: Bearer sk_test_123"
       - run:
           name: Login to docker image host
-          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+            fi
           filters:
             branches:
               only: master
       - run:
           name: Push docker image
-          command: docker push brad811/stripe-mock:$CIRCLE_BRANCH
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker push brad811/stripe-mock:$CIRCLE_BRANCH
+            fi
           filters:
             branches:
               only: master
