@@ -2,6 +2,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "key_pair" {
+  type = "string"
+}
+
 resource "aws_key_pair" "stripe-mock" {
   key_name   = "stripe-mock"
   public_key = "${var.key_pair}"
