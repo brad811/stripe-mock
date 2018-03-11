@@ -56,7 +56,7 @@ jobs:
             unzip terraform_0.11.3_linux_amd64.zip
             ./terraform init
             ./terraform plan -out=terraform.plan -var 'key_pair=$EC2_KEY_PAIR'
-            ./terraform apply -var 'key_pair=$EC2_KEY_PAIR' terraform.plan
+            ./terraform apply terraform.plan
           filters:
             branches:
               only: master
