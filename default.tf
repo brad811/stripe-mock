@@ -6,7 +6,7 @@ resource "aws_instance" "stripe-mock" {
     count = 1
 
     instance_type = "t2.micro"
-    ami = "ami-07585467"
+    ami = "ami-66506c1c"
     associate_public_ip_address = true
 
     provisioner "remote-exec" {
