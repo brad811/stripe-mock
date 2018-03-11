@@ -54,7 +54,6 @@ jobs:
           command: |
             wget https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
             unzip terraform_0.11.3_linux_amd64.zip
-            ./terraform remote config -backend=S3 -backend-config="bucket=stripe-mock-terraform" -backend-config="key=terraform.tfstate" -backend-config="region=us-east-1"
             ./terraform plan -out=terraform.plan
             ./terraform apply terraform.plan
             ./terraform remote push
