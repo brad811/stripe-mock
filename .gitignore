@@ -2,5 +2,7 @@
 .envrc
 dist/
 stripe-mock
+.terraform
+terraform.plan
 *.tfstate
 *.backup

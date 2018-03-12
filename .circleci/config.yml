@@ -49,13 +49,15 @@ jobs:
           filters:
             branches:
               only: master
+      - run: echo -e $EC2_PUBLIC_KEY > ec2.pub
+      - run: echo -e $EC2_KEY_PAIR > ec2.key
       - run:
           name: Use Terraform
           command: |
             wget https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
             unzip terraform_0.11.3_linux_amd64.zip
             ./terraform init
-            ./terraform plan -out=terraform.plan -var 'key_pair=$EC2_KEY_PAIR'
+            ./terraform plan -out=terraform.plan
             ./terraform apply terraform.plan
           filters:
             branches:
